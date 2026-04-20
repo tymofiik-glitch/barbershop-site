@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Two in One Barberstudio – Rijswijk</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Cormorant:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet"/>
+
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: {
+      void:    '#09090A',
+      obsidian:'#0E0E10',
+      char:    '#161618',
+      pitch:   '#1E1E21',
+      forge:   '#26262A',
+      iron:    '#333338',
+      mist:    '#7A7A85',
+      silk:    '#AEAEB8',
+      ivory:   '#EDE9E0',
+      gold:    '#C09A2A',
+      'gold-l':'#D4AE3C',
+      'gold-d':'#8A6E1A',
+      amber:   '#B87A10',
+    },
+    fontFamily: {
+      sans:   ['Montserrat','sans-serif'],
+      serif:  ['Cormorant','serif'],
+    }
+  }}
+}
+</script>
+
+<style>
+/* ── Reset & base ─────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-family:'Montserrat',sans-serif;background:#09090A;color:#EDE9E0;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(192,154,42,.28);color:#EDE9E0}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:#09090A}
+::-webkit-scrollbar-thumb{background:#C09A2A;border-radius:2px}
+
+/* ── CSS Variables ────────────────────────────── */
+:root{
+  --gold:#C09A2A;
+  --gold-l:#D4AE3C;
+  --gold-d:#8A6E1A;
+  --char:#161618;
+  --pitch:#1E1E21;
+  --forge:#26262A;
+  --iron:#333338;
+  --mist:#7A7A85;
+  --silk:#AEAEB8;
+  --ivory:#EDE9E0;
+}
+
+/* ── Grain overlay ────────────────────────────── */
+body::after{
+  content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity:.022;
+}
+
+/* ── Typography helpers ───────────────────────── */
+.label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--mist)}
+.eyebrow{font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:1.05rem;letter-spacing:.04em}
+
+/* ── Gold line ────────────────────────────────── */
+.g-line{height:1px;background:linear-gradient(90deg,transparent,var(--gold) 40%,var(--gold) 60%,transparent)}
+.g-line-v{width:1px;background:linear-gradient(180deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent)}
+
+/* ── Nav glass ────────────────────────────────── */
+.nav-glass{
+  background:rgba(9,9,10,.85);
+  backdrop-filter:blur(20px) saturate(160%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  border-bottom:1px solid rgba(192,154,42,.1);
+  transition:border-color .3s;
+}
+.nav-glass.scrolled{border-color:rgba(192,154,42,.22)}
+
+/* ── Nav link ─────────────────────────────────── */
+.nav-link{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;
+  color:var(--mist);transition:color .2s;position:relative;padding-bottom:2px;
+}
+.nav-link::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;
+}
+.nav-link:hover{color:var(--ivory)}
+.nav-link:hover::after{transform:scaleX(1)}
+
+/* ── Language toggle ──────────────────────────── */
+.lang-wrap{display:flex;border:1px solid var(--iron);border-radius:2px;overflow:hidden}
+.lang-btn{font-size:10px;letter-spacing:.14em;font-weight:500;padding:5px 10px;color:var(--mist);background:transparent;border:none;cursor:pointer;transition:background .2s,color .2s;text-transform:uppercase}
+.lang-btn.active{background:var(--gold);color:#09090A}
+
+/* ── CTA buttons ──────────────────────────────── */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--gold);color:#09090A;
+  font-size:11px;letter-spacing:.18em;font-weight:500;text-transform:uppercase;
+  padding:14px 28px;border:none;cursor:pointer;
+  position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s,filter .2s;
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 0%,rgba(255,255,255,.18) 50%,transparent 100%);
+  transform:translateX(-110%);transition:transform .45s ease;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(192,154,42,.38);filter:brightness(1.07)}
+.btn-primary:hover::before{transform:translateX(110%)}
+.btn-primary:active{transform:translateY(0)}
+
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(192,154,42,.4);color:var(--gold-l);
+  font-size:11px;letter-spacing:.18em;font-weight:500;text-transform:uppercase;
+  padding:14px 28px;background:transparent;cursor:pointer;
+  transition:background .25s,border-color .25s,color .25s,transform .2s;
+}
+.btn-ghost:hover{background:rgba(192,154,42,.09);border-color:var(--gold-l);color:var(--ivory);transform:translateY(-2px)}
+
+/* ── Hamburger ────────────────────────────────── */
+.ham-line{display:block;width:22px;height:1.5px;background:var(--ivory);transition:transform .3s,opacity .3s;border-radius:1px}
+#hamburger.open .ham-line:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#hamburger.open .ham-line:nth-child(2){opacity:0}
+#hamburger.open .ham-line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+#mobile-menu{max-height:0;overflow:hidden;transition:max-height .42s cubic-bezier(.4,0,.2,1)}
+#mobile-menu.open{max-height:420px}
+
+/* ── Hero ─────────────────────────────────────── */
+.hero-bg{
+  background:
+    radial-gradient(ellipse 70% 55% at 68% 42%,rgba(192,154,42,.07) 0%,transparent 68%),
+    linear-gradient(175deg,rgba(192,154,42,.04) 0%,transparent 45%),
+    #09090A;
+}
+.hero-visual{
+  background:linear-gradient(145deg,#26262A 0%,#1E1E21 55%,#161618 100%);
+  border:1px solid rgba(192,154,42,.18);
+  position:relative;overflow:hidden;
+}
+.hero-visual::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(135deg,rgba(192,154,42,.035) 0,rgba(192,154,42,.035) 1px,transparent 1px,transparent 44px);
+}
+
+/* ── Stats bar ────────────────────────────────── */
+.stats-bar{background:linear-gradient(90deg,#0E0E10 0%,#161618 50%,#0E0E10 100%);border-top:1px solid rgba(192,154,42,.1);border-bottom:1px solid rgba(192,154,42,.1)}
+.stat-item{display:flex;align-items:center;gap:12px}
+.stat-icon{width:34px;height:34px;display:flex;align-items:center;justify-content:center;color:var(--gold);flex-shrink:0}
+
+/* ── Service cards ────────────────────────────── */
+.svc-card{
+  background:linear-gradient(150deg,#1E1E21 0%,#161618 100%);
+  border:1px solid rgba(192,154,42,.12);
+  transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease;
+  position:relative;overflow:hidden;
+}
+.svc-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(192,154,42,.06) 0%,transparent 60%);
+  opacity:0;transition:opacity .3s;
+}
+.svc-card:hover{border-color:rgba(192,154,42,.45);transform:translateY(-4px);box-shadow:0 18px 48px rgba(0,0,0,.5),0 4px 12px rgba(192,154,42,.1)}
+.svc-card:hover::after{opacity:1}
+.badge-popular{
+  position:absolute;top:0;right:0;
+  background:var(--gold);color:#09090A;
+  font-size:9px;letter-spacing:.2em;font-weight:400;text-transform:uppercase;
+  padding:5px 11px;
+}
+
+/* ── Review cards ─────────────────────────────── */
+.rev-card{
+  background:linear-gradient(155deg,#1E1E21 0%,#161618 100%);
+  border:1px solid rgba(192,154,42,.1);
+  transition:border-color .28s,transform .28s;
+}
+.rev-card:hover{border-color:rgba(192,154,42,.35);transform:translateY(-3px)}
+
+/* ── Reveal animation ─────────────────────────── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ── Section headings ─────────────────────────── */
+.section-tag{font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:var(--gold);margin-bottom:12px;display:block}
+
+/* ── Map placeholder ──────────────────────────── */
+.map-ph{
+  background:linear-gradient(145deg,#1E1E21,#161618);
+  border:1px solid rgba(192,154,42,.12);
+  position:relative;overflow:hidden;
+}
+.map-ph::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,transparent,transparent 28px,rgba(192,154,42,.025) 28px,rgba(192,154,42,.025) 29px);
+}
+
+/* iframe map filter for dark mode */
+.map-iframe iframe {
+  filter: grayscale(80%) invert(100%) contrast(90%) hue-rotate(180deg) opacity(80%);
+}
+
+/* ── Sticky book btn ──────────────────────────── */
+#sticky-book{
+  position:fixed;bottom:26px;right:26px;z-index:900;
+  animation:fadeUp .6s ease 1.4s both;
+}
+
+/* ── Modal overlay ────────────────────────────── */
+.modal-ov{
+  position:fixed;inset:0;z-index:1100;
+  background:rgba(0,0,0,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.modal-ov.open{opacity:1;pointer-events:all}
+.modal-box{
+  background:#1E1E21;border:1px solid rgba(192,154,42,.22);
+  width:100%;max-width:560px;max-height:90vh;overflow-y:auto;
+  transform:scale(.94) translateY(18px);transition:transform .32s cubic-bezier(.34,1.3,.64,1);
+  box-shadow:0 32px 90px rgba(0,0,0,.75);
+  scrollbar-width:thin;scrollbar-color:var(--gold) #1E1E21;
+}
+.modal-ov.open .modal-box{transform:scale(1) translateY(0)}
+
+/* ── Step progress ────────────────────────────── */
+.step-dot{
+  width:28px;height:28px;border-radius:50%;border:1.5px solid var(--iron);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:500;color:var(--mist);transition:all .3s;
+  flex-shrink:0;
+}
+.step-dot.active{border-color:var(--gold);background:var(--gold);color:#09090A}
+.step-dot.done{border-color:var(--gold);background:transparent;color:var(--gold)}
+.step-conn{flex:1;height:1px;background:var(--iron);transition:background .5s}
+.step-conn.done{background:var(--gold)}
+
+/* ── Step panels ──────────────────────────────── */
+.step-panel{display:none}
+.step-panel.active{display:block}
+
+/* ── Service option ───────────────────────────── */
+.svc-opt{
+  border:1px solid var(--iron);padding:14px 16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  transition:border-color .2s,background .2s;
+  background:transparent;width:100%;text-align:left;
+}
+.svc-opt:hover{border-color:rgba(192,154,42,.4);background:rgba(192,154,42,.04)}
+.svc-opt.selected{border-color:var(--gold);background:rgba(192,154,42,.08)}
+.svc-opt.selected .svc-opt-check{opacity:1;border-color:var(--gold);background:var(--gold)}
+.svc-opt-check{
+  width:18px;height:18px;border-radius:50%;border:1.5px solid var(--iron);
+  display:flex;align-items:center;justify-content:center;opacity:.4;transition:all .2s;flex-shrink:0;
+}
+
+/* ── Barber card ──────────────────────────────── */
+.barber-card{
+  border:1px solid var(--iron);padding:20px 16px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+  transition:border-color .2s,background .2s,transform .2s;
+  background:transparent;width:100%;text-align:center;
+}
+.barber-card:hover{border-color:rgba(192,154,42,.4);background:rgba(192,154,42,.04);transform:translateY(-2px)}
+.barber-card.selected{border-color:var(--gold);background:rgba(192,154,42,.08)}
+.barber-avatar{
+  width:62px;height:62px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-weight:400;font-size:18px;color:#09090A;flex-shrink:0;
+}
+
+/* ── Time slot ────────────────────────────────── */
+.time-slot{
+  border:1px solid var(--iron);padding:9px 6px;font-size:12px;
+  font-weight:500;letter-spacing:.04em;cursor:pointer;text-align:center;
+  transition:border-color .18s,background .18s,color .18s;color:var(--silk);
+  background:transparent;
+}
+.time-slot:hover:not(.taken){border-color:rgba(192,154,42,.4);background:rgba(192,154,42,.05);color:var(--ivory)}
+.time-slot.selected{border-color:var(--gold);background:rgba(192,154,42,.12);color:var(--ivory)}
+.time-slot.taken{opacity:.28;cursor:not-allowed;text-decoration:line-through}
+
+/* ── Form input ───────────────────────────────── */
+.form-input{
+  width:100%;background:#26262A;border:1px solid var(--iron);
+  padding:12px 14px;font-size:13px;font-family:'Montserrat',sans-serif;
+  color:var(--ivory);transition:border-color .2s;outline:none;
+}
+.form-input::placeholder{color:var(--mist)}
+.form-input:focus{border-color:var(--gold)}
+.form-label{font-size:10px;letter-spacing:.16em;font-weight:500;color:var(--mist);text-transform:uppercase;display:block;margin-bottom:6px}
+
+/* ── Calendar ─────────────────────────────────── */
+.cal-day{
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:500;cursor:pointer;border:1px solid transparent;
+  transition:border-color .18s,background .18s,color .18s;color:var(--silk);
+  border-radius:2px;
+}
+.cal-day:hover:not(.past):not(.empty){border-color:rgba(192,154,42,.4);background:rgba(192,154,42,.06);color:var(--ivory)}
+.cal-day.selected{border-color:var(--gold);background:rgba(192,154,42,.14);color:var(--ivory);font-weight:500}
+.cal-day.today{color:var(--gold-l);font-weight:500}
+.cal-day.past{opacity:.22;cursor:not-allowed}
+.cal-day.empty{cursor:default}
+
+/* ── Toast ────────────────────────────────────── */
+#toast{
+  position:fixed;bottom:90px;right:24px;z-index:1200;
+  background:#1E1E21;border:1px solid rgba(192,154,42,.3);
+  padding:14px 18px;display:flex;align-items:center;gap:12px;
+  box-shadow:0 16px 40px rgba(0,0,0,.6);
+  opacity:0;pointer-events:none;transform:translateY(12px);
+  transition:opacity .4s,transform .4s;
+}
+#toast.show{opacity:1;transform:translateY(0)}
+
+/* ── Keyframes ────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+@keyframes pulsegold{0%,100%{filter:drop-shadow(0 0 4px var(--gold))}50%{filter:drop-shadow(0 0 10px var(--gold-l))}}
+
+.shimmer-text{
+  background:linear-gradient(90deg,var(--gold-d) 0%,var(--gold-l) 30%,var(--gold) 50%,var(--gold-l) 70%,var(--gold-d) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:shimmer 3.5s linear infinite;
+}
+.star-pulse{animation:pulsegold 2.8s ease-in-out infinite}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+  FLOATING BOOK BUTTON
+═══════════════════════════════════════════════════ -->
+<div id="sticky-book">
+  <button onclick="openModal()" class="btn-primary shadow-2xl" style="border-radius:2px">
+    <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+    <span class="lang-nl">Boek Nu</span>
+    <span class="lang-en hidden">Book Now</span>
+  </button>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+  MULTI-STEP BOOKING MODAL
+═══════════════════════════════════════════════════ -->
+<div id="booking-modal" class="modal-ov" onclick="outsideClose(event)">
+  <div class="modal-box">
+
+    <!-- Modal Header -->
+    <div class="flex items-center justify-between px-8 pt-8 pb-6">
+      <div>
+        <span class="eyebrow lang-nl" style="font-size:.85rem">Reserveer uw stoel</span>
+        <span class="eyebrow lang-en hidden" style="font-size:.85rem">Reserve your chair</span>
+        <h3 class="font-sans font-400 text-ivory text-xl tracking-widest uppercase mt-1 lang-nl">Afspraak Maken</h3>
+        <h3 class="font-sans font-400 text-ivory text-xl tracking-widest uppercase mt-1 lang-en hidden">Book Appointment</h3>
+      </div>
+      <button onclick="closeModal()" class="text-mist hover:text-ivory transition-colors p-1" aria-label="Sluiten">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Step Progress Indicator -->
+    <div class="px-8 pb-6">
+      <div class="flex items-center gap-0">
+        <!-- Step 1 -->
+        <div class="step-dot active" id="dot-1">1</div>
+        <div class="step-conn" id="conn-1-2" style="margin:0 4px"></div>
+        <!-- Step 2 -->
+        <div class="step-dot" id="dot-2">2</div>
+        <div class="step-conn" id="conn-2-3" style="margin:0 4px"></div>
+        <!-- Step 3 -->
+        <div class="step-dot" id="dot-3">3</div>
+        <div class="step-conn" id="conn-3-4" style="margin:0 4px"></div>
+        <!-- Step 4 -->
+        <div class="step-dot" id="dot-4">4</div>
+      </div>
+      <div class="flex justify-between mt-2" style="font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--mist)">
+        <span class="lang-nl">Dienst</span><span class="lang-en hidden">Service</span>
+        <span class="lang-nl">Kapper</span><span class="lang-en hidden">Barber</span>
+        <span class="lang-nl">Datum & Tijd</span><span class="lang-en hidden">Date & Time</span>
+        <span class="lang-nl">Gegevens</span><span class="lang-en hidden">Details</span>
+      </div>
+    </div>
+
+    <div class="g-line mx-8 mb-6"></div>
+
+    <!-- ── STEP 1: SERVICE SELECTION ─────────────────── -->
+    <div id="step-1" class="step-panel active px-8 pb-8">
+      <h4 class="font-sans font-500 text-ivory text-sm uppercase tracking-widest mb-1 lang-nl">Kies uw dienst</h4>
+      <h4 class="font-sans font-500 text-ivory text-sm uppercase tracking-widest mb-1 lang-en hidden">Choose your service</h4>
+      <p class="text-mist mb-5" style="font-size:12px;line-height:1.6" class="lang-nl">Selecteer de behandeling die u wenst.</p>
+
+      <div class="flex flex-col gap-2">
+        <!-- Option: Knippen -->
+        <button class="svc-opt" onclick="selectService(this,'Knippen','€20')">
+          <div class="flex flex-col gap-0.5 flex-1 text-left">
+            <span class="text-ivory font-500 text-sm lang-nl">Knippen</span>
+            <span class="text-ivory font-500 text-sm lang-en hidden">Haircut</span>
+            <span class="text-mist lang-nl" style="font-size:11px">Klassiek of modern kapsel, volledig afgestemd op jouw stijl.</span>
+            <span class="text-mist lang-en hidden" style="font-size:11px">Classic or modern cut, tailored to your style.</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-gold font-500 text-sm whitespace-nowrap">€ 20</span>
+            <div class="svc-opt-check"><svg class="w-2.5 h-2.5 text-void" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          </div>
+        </button>
+
+        <!-- Option: Baard Trimmen -->
+        <button class="svc-opt" onclick="selectService(this,'Baard Trimmen','€15')">
+          <div class="flex flex-col gap-0.5 flex-1 text-left">
+            <span class="text-ivory font-500 text-sm lang-nl">Baard Trimmen</span>
+            <span class="text-ivory font-500 text-sm lang-en hidden">Beard Trim</span>
+            <span class="text-mist lang-nl" style="font-size:11px">Scherp, gedefinieerd en perfect in vorm. Jouw baard op zijn best.</span>
+            <span class="text-mist lang-en hidden" style="font-size:11px">Sharp, defined and perfectly shaped. Your beard at its best.</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-gold font-500 text-sm whitespace-nowrap">€ 15</span>
+            <div class="svc-opt-check"><svg class="w-2.5 h-2.5 text-void" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          </div>
+        </button>
+
+        <!-- Option: Knippen + Baard (Popular) -->
+        <button class="svc-opt" onclick="selectService(this,'Knippen + Baard','€32')" style="position:relative">
+          <div class="absolute top-0 right-0 bg-amber px-2 py-0.5" style="font-size:8px;letter-spacing:.18em;font-weight:400;text-transform:uppercase;color:#09090A">
+            <span class="lang-nl">Populair</span><span class="lang-en hidden">Popular</span>
+          </div>
+          <div class="flex flex-col gap-0.5 flex-1 text-left pr-12">
+            <span class="text-ivory font-500 text-sm lang-nl">Knippen + Baard</span>
+            <span class="text-ivory font-500 text-sm lang-en hidden">Cut + Beard</span>
+            <span class="text-mist lang-nl" style="font-size:11px">De complete behandeling: perfect kapsel en verzorgde baard in één sessie.</span>
+            <span class="text-mist lang-en hidden" style="font-size:11px">The complete treatment: perfect cut and groomed beard in one session.</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-gold font-500 text-sm whitespace-nowrap">€ 32</span>
+            <div class="svc-opt-check"><svg class="w-2.5 h-2.5 text-void" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          </div>
+        </button>
+
+        <!-- Option: Scheren -->
+        <button class="svc-opt" onclick="selectService(this,'Scheren','€22')">
+          <div class="flex flex-col gap-0.5 flex-1 text-left">
+            <span class="text-ivory font-500 text-sm lang-nl">Scheren</span>
+            <span class="text-ivory font-500 text-sm lang-en hidden">Shave</span>
+            <span class="text-mist lang-nl" style="font-size:11px">Klassieke scheerbeurt met warme lathers — een rituele ervaring.</span>
+            <span class="text-mist lang-en hidden" style="font-size:11px">Classic shave with warm lather — a ritual experience.</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-gold font-500 text-sm whitespace-nowrap">€ 22</span>
+            <div class="svc-opt-check"><svg class="w-2.5 h-2.5 text-void" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          </div>
+        </button>
+
+        <!-- Option: Haar + Baard Pakket -->
+        <button class="svc-opt" onclick="selectService(this,'Haar + Baard Pakket','€42')">
+          <div class="flex flex-col gap-0.5 flex-1 text-left">
+            <span class="text-ivory font-500 text-sm lang-nl">Haar + Baard Pakket</span>
+            <span class="text-ivory font-500 text-sm lang-en hidden">Hair + Beard Package</span>
+            <span class="text-mist lang-nl" style="font-size:11px">De premium optie: knippen, baard trimmen en scheren — voor de man die het beste wil.</span>
+            <span class="text-mist lang-en hidden" style="font-size:11px">The premium option: cut, beard trim and shave — for the man who wants the best.</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-gold font-500 text-sm whitespace-nowrap">€ 42</span>
+            <div class="svc-opt-check"><svg class="w-2.5 h-2.5 text-void" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          </div>
+        </button>
+
+        <!-- Option: Jeugd Knippen -->
+        <button class="svc-opt" onclick="selectService(this,'Jeugd Knippen','€15')">
+          <div class="flex flex-col gap-0.5 flex-1 text-left">
+            <span class="text-ivory font-500 text-sm lang-nl">Jeugd Knippen</span>
+            <span class="text-ivory font-500 text-sm lang-en hidden">Youth Haircut</span>
+            <span class="text-mist lang-nl" style="font-size:11px">Speciaal tarief voor jeugd tot 14 jaar. Zelfde topkwaliteit, geweldige prijs.</span>
+            <span class="text-mist lang-en hidden" style="font-size:11px">Special rate for youth up to 14 years. Same quality, great price.</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-gold font-500 text-sm whitespace-nowrap">€ 15</span>
+            <div class="svc-opt-check"><svg class="w-2.5 h-2.5 text-void" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          </div>
+        </button>
+      </div>
+
+      <!-- Step nav -->
+      <div class="flex justify-end mt-6">
+        <button onclick="goStep(2)" class="btn-primary" id="step1-next" disabled style="opacity:.35;cursor:not-allowed;border-radius:2px">
+          <span class="lang-nl">Volgende</span><span class="lang-en hidden">Next</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── STEP 2: BARBER SELECTION ───────────────────── -->
+    <div id="step-2" class="step-panel px-8 pb-8">
+      <h4 class="font-sans font-500 text-ivory text-sm uppercase tracking-widest mb-1 lang-nl">Kies uw kapper</h4>
+      <h4 class="font-sans font-500 text-ivory text-sm uppercase tracking-widest mb-1 lang-en hidden">Choose your barber</h4>
+      <p class="text-mist mb-5 lang-nl" style="font-size:12px;line-height:1.6">Of kies "Geen voorkeur" voor de eerstvolgende beschikbare kapper.</p>
+      <p class="text-mist mb-5 lang-en hidden" style="font-size:12px;line-height:1.6">Or choose "No preference" for the next available barber.</p>
+
+      <div class="grid grid-cols-3 gap-3">
+        <!-- Barber: No Preference -->
+        <button class="barber-card" onclick="selectBarber(this,'Geen voorkeur')">
+          <div class="barber-avatar" style="background:linear-gradient(135deg,var(--iron),var(--forge))">
+            <svg class="w-7 h-7 text-mist" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div>
+            <div class="text-ivory font-500" style="font-size:12px;letter-spacing:.04em" lang-nl>Geen voorkeur</div>
+            <div class="text-mist" style="font-size:10px;margin-top:2px" lang-nl>Eerste beschikbare</div>
+            <div class="text-ivory font-500 hidden lang-en" style="font-size:12px;letter-spacing:.04em">No preference</div>
+            <div class="text-mist hidden lang-en" style="font-size:10px;margin-top:2px">First available</div>
+          </div>
+        </button>
+
+        <!-- Barber: Ismail -->
+        <button class="barber-card" onclick="selectBarber(this,'Ismail')">
+          <div class="barber-avatar" style="background:linear-gradient(135deg,#C09A2A,#8A6E1A)">IS</div>
+          <div>
+            <div class="text-ivory font-500" style="font-size:12px;letter-spacing:.04em">Ismail</div>
+            <div class="text-mist" style="font-size:10px;margin-top:2px" class="lang-nl">12+ jr. ervaring</div>
+            <div class="flex gap-0.5 justify-center mt-1">
+              <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+          </div>
+        </button>
+
+        <!-- Barber: Karim -->
+        <button class="barber-card" onclick="selectBarber(this,'Karim')">
+          <div class="barber-avatar" style="background:linear-gradient(135deg,#555,#333)">KA</div>
+          <div>
+            <div class="text-ivory font-500" style="font-size:12px;letter-spacing:.04em">Karim</div>
+            <div class="text-mist" style="font-size:10px;margin-top:2px">8+ jr. ervaring</div>
+            <div class="flex gap-0.5 justify-center mt-1">
+              <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-2.5 h-2.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div class="flex justify-between mt-6">
+        <button onclick="goStep(1)" class="btn-ghost" style="border-radius:2px">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+          <span class="lang-nl">Terug</span><span class="lang-en hidden">Back</span>
+        </button>
+        <button onclick="goStep(3)" class="btn-primary" id="step2-next" disabled style="opacity:.35;cursor:not-allowed;border-radius:2px">
+          <span class="lang-nl">Volgende</span><span class="lang-en hidden">Next</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── STEP 3: DATE & TIME ────────────────────────── -->
+    <div id="step-3" class="step-panel px-8 pb-8">
+      <h4 class="font-sans font-500 text-ivory text-sm uppercase tracking-widest mb-1 lang-nl">Kies datum & tijd</h4>
+      <h4 class="font-sans font-500 text-ivory text-sm uppercase tracking-widest mb-1 lang-en hidden">Choose date & time</h4>
+
+      <!-- Mini calendar -->
+      <div class="mb-5">
+        <div class="flex items-center justify-between mb-3">
+          <button onclick="prevMonth()" class="text-mist hover:text-ivory transition-colors p-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <span id="cal-month-label" class="text-ivory font-500 text-sm tracking-widest uppercase"></span>
+          <button onclick="nextMonth()" class="text-mist hover:text-ivory transition-colors p-1">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <!-- Day headers -->
+        <div class="grid grid-cols-7 gap-1 mb-1">
+          <span class="label text-center" style="font-size:9px">Ma</span>
+          <span class="label text-center" style="font-size:9px">Di</span>
+          <span class="label text-center" style="font-size:9px">Wo</span>
+          <span class="label text-center" style="font-size:9px">Do</span>
+          <span class="label text-center" style="font-size:9px">Vr</span>
+          <span class="label text-center" style="font-size:9px">Za</span>
+          <span class="label text-center" style="font-size:9px">Zo</span>
+        </div>
+        <div id="cal-grid" class="grid grid-cols-7 gap-1"></div>
+      </div>
+
+      <!-- Time slots -->
+      <div id="time-section" style="display:none">
+        <div class="g-line mb-4"></div>
+        <p class="label mb-3 lang-nl">Beschikbare tijden</p>
+        <p class="label mb-3 lang-en hidden">Available times</p>
+        <div id="time-grid" class="grid grid-cols-4 gap-2"></div>
+      </div>
+
+      <div class="flex justify-between mt-6">
+        <button onclick="goStep(2)" class="btn-ghost" style="border-radius:2px">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+          <span class="lang-nl">Terug</span><span class="lang-en hidden">Back</span>
+        </button>
+        <button onclick="goStep(4)" class="btn-primary" id="step3-next" disabled style="opacity:.35;cursor:not-allowed;border-radius:2px">
+          <span class="lang-nl">Volgende</span><span class="lang-en hidden">Next</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- ── STEP 4: PERSONAL DETAILS ───────────────────── -->
+    <div id="step-4" class="step-panel px-8 pb-8">
+      <h4 class="font-sans font-500 text-ivory text-sm uppercase tracking-widest mb-1 lang-nl">Uw gegevens</h4>
+      <h4 class="font-sans font-500 text-ivory text-sm uppercase tracking-widest mb-1 lang-en hidden">Your details</h4>
+
+      <!-- Booking Summary -->
+      <div class="bg-forge border border-iron p-4 mb-6" style="border-radius:2px">
+        <p class="label mb-2 lang-nl">Uw afspraak</p>
+        <p class="label mb-2 lang-en hidden">Your appointment</p>
+        <div class="flex flex-col gap-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-mist" style="font-size:11px" class="lang-nl">Dienst</span>
+            <span id="sum-service" class="text-ivory font-500" style="font-size:11px">—</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-mist" style="font-size:11px">Kapper</span>
+            <span id="sum-barber" class="text-ivory font-500" style="font-size:11px">—</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-mist" style="font-size:11px" class="lang-nl">Datum & Tijd</span>
+            <span id="sum-datetime" class="text-ivory font-500" style="font-size:11px">—</span>
+          </div>
+          <div class="g-line mt-1 mb-1"></div>
+          <div class="flex items-center justify-between">
+            <span class="text-mist" style="font-size:11px">Totaal</span>
+            <span id="sum-price" class="text-gold font-500" style="font-size:13px">—</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form fields -->
+      <div class="flex flex-col gap-4">
+        <div>
+          <label class="form-label lang-nl">Naam</label>
+          <label class="form-label lang-en hidden">Name</label>
+          <input class="form-input" type="text" placeholder="Uw volledige naam" id="field-name"/>
+        </div>
+        <div>
+          <label class="form-label lang-nl">Telefoonnummer</label>
+          <label class="form-label lang-en hidden">Phone number</label>
+          <input class="form-input" type="tel" placeholder="06 xxxxxxxx" id="field-phone"/>
+        </div>
+        <div>
+          <label class="form-label lang-nl">E-mailadres</label>
+          <label class="form-label lang-en hidden">Email address</label>
+          <input class="form-input" type="email" placeholder="uwmail@voorbeeld.nl" id="field-email"/>
+        </div>
+        <div>
+          <label class="form-label lang-nl">Opmerking (optioneel)</label>
+          <label class="form-label lang-en hidden">Note (optional)</label>
+          <textarea class="form-input" rows="2" placeholder="Bijv. specifieke wensen, referentie foto, …" id="field-note" style="resize:none"></textarea>
+        </div>
+      </div>
+
+      <div class="flex justify-between mt-6">
+        <button onclick="goStep(3)" class="btn-ghost" style="border-radius:2px">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+          <span class="lang-nl">Terug</span><span class="lang-en hidden">Back</span>
+        </button>
+        <button onclick="confirmBooking(this)" class="btn-primary" style="border-radius:2px">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+          <span class="lang-nl">Bevestig Afspraak</span><span class="lang-en hidden">Confirm Appointment</span>
+        </button>
+      </div>
+
+      <p class="text-center text-mist mt-4 lang-nl" style="font-size:11px">Of bel ons direct op <a href="tel:0648539573" class="text-gold hover:text-gold-l transition-colors">06 48539573</a></p>
+      <p class="text-center text-mist mt-4 lang-en hidden" style="font-size:11px">Or call us directly at <a href="tel:0648539573" class="text-gold hover:text-gold-l transition-colors">06 48539573</a></p>
+    </div>
+
+  </div><!-- /modal-box -->
+</div><!-- /modal-ov -->
+
+<!-- ══════════════════════════════════════════════════
+  TOAST NOTIFICATION
+═══════════════════════════════════════════════════ -->
+<div id="toast">
+  <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-d));display:flex;align-items:center;justify-content:center;flex-shrink:0">
+    <svg class="w-4 h-4" style="color:#09090A" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+  </div>
+  <div>
+    <p class="text-ivory font-500 lang-nl" style="font-size:13px;letter-spacing:.04em">Afspraak Bevestigd!</p>
+    <p class="text-ivory font-500 lang-en hidden" style="font-size:13px;letter-spacing:.04em">Appointment Confirmed!</p>
+    <p class="text-mist lang-nl" style="font-size:11px;margin-top:2px">We nemen spoedig contact met u op.</p>
+    <p class="text-mist lang-en hidden" style="font-size:11px;margin-top:2px">We'll be in touch with you shortly.</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+  HEADER / NAV
+═══════════════════════════════════════════════════ -->
+<header id="nav" class="nav-glass fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="flex items-center justify-between" style="height:68px">
+
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-3 group">
+        <div style="width:34px;height:34px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;transform:rotate(45deg);transition:transform .5s" class="group-hover:rotate-0" id="logo-diamond">
+          <span style="transform:rotate(-45deg);font-size:9px;font-weight:400;color:var(--gold);letter-spacing:.05em;transition:transform .5s" id="logo-text">2:1</span>
+        </div>
+        <div>
+          <div style="font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory);line-height:1">Two in One</div>
+          <div style="font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:10px;letter-spacing:.1em;line-height:1.2;margin-top:1px">Barberstudio</div>
+        </div>
+      </a>
+
+      <!-- Desktop nav links -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#home"     class="nav-link lang-nl">Home</a>
+        <a href="#diensten" class="nav-link lang-nl">Diensten</a>
+        <a href="#locatie"  class="nav-link lang-nl">Locatie</a>
+        <a href="#over-ons" class="nav-link lang-nl">Over Ons</a>
+        <a href="#reviews"  class="nav-link lang-nl">Reviews</a>
+        <a href="#contact"  class="nav-link lang-nl">Contact</a>
+        <a href="#home"     class="nav-link lang-en hidden">Home</a>
+        <a href="#diensten" class="nav-link lang-en hidden">Services</a>
+        <a href="#locatie"  class="nav-link lang-en hidden">Location</a>
+        <a href="#over-ons" class="nav-link lang-en hidden">About</a>
+        <a href="#reviews"  class="nav-link lang-en hidden">Reviews</a>
+        <a href="#contact"  class="nav-link lang-en hidden">Contact</a>
+      </nav>
+
+      <!-- Right controls -->
+      <div class="flex items-center gap-4">
+        <!-- Lang toggle -->
+        <div class="lang-wrap">
+          <button id="btn-nl" class="lang-btn active" onclick="setLang('nl')">NL</button>
+          <button id="btn-en" class="lang-btn" onclick="setLang('en')">EN</button>
+        </div>
+
+        <!-- Boek Nu desktop -->
+        <button onclick="openModal()" class="btn-primary hidden lg:flex" style="padding:10px 20px;font-size:10px;border-radius:2px">
+          <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span class="lang-nl">Boek Nu</span>
+          <span class="lang-en hidden">Book Now</span>
+        </button>
+
+        <!-- Hamburger -->
+        <button id="hamburger" onclick="toggleMenu()" class="lg:hidden flex flex-col gap-[5px] p-1.5" aria-label="Menu">
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu">
+      <nav class="flex flex-col gap-5 py-6 border-t border-iron">
+        <a href="#home"     onclick="closeMobileMenu()" class="nav-link lang-nl" style="font-size:12px">Home</a>
+        <a href="#diensten" onclick="closeMobileMenu()" class="nav-link lang-nl" style="font-size:12px">Diensten</a>
+        <a href="#locatie"  onclick="closeMobileMenu()" class="nav-link lang-nl" style="font-size:12px">Locatie</a>
+        <a href="#over-ons" onclick="closeMobileMenu()" class="nav-link lang-nl" style="font-size:12px">Over Ons</a>
+        <a href="#reviews"  onclick="closeMobileMenu()" class="nav-link lang-nl" style="font-size:12px">Reviews</a>
+        <a href="#contact"  onclick="closeMobileMenu()" class="nav-link lang-nl" style="font-size:12px">Contact</a>
+        <a href="#home"     onclick="closeMobileMenu()" class="nav-link lang-en hidden" style="font-size:12px">Home</a>
+        <a href="#diensten" onclick="closeMobileMenu()" class="nav-link lang-en hidden" style="font-size:12px">Services</a>
+        <a href="#locatie"  onclick="closeMobileMenu()" class="nav-link lang-en hidden" style="font-size:12px">Location</a>
+        <a href="#over-ons" onclick="closeMobileMenu()" class="nav-link lang-en hidden" style="font-size:12px">About</a>
+        <a href="#reviews"  onclick="closeMobileMenu()" class="nav-link lang-en hidden" style="font-size:12px">Reviews</a>
+        <a href="#contact"  onclick="closeMobileMenu()" class="nav-link lang-en hidden" style="font-size:12px">Contact</a>
+        <button onclick="openModal();closeMobileMenu()" class="btn-primary w-full" style="justify-content:center;border-radius:2px">
+          <span class="lang-nl">Maak een Afspraak</span>
+          <span class="lang-en hidden">Book an Appointment</span>
+        </button>
+      </nav>
+    </div>
+  </div>
+</header>
+
+
+<!-- ══════════════════════════════════════════════════
+  HERO SECTION
+═══════════════════════════════════════════════════ -->
+<section id="home" class="hero-bg min-h-screen flex items-center pt-20 relative overflow-hidden">
+
+  <!-- Subtle large BG text -->
+  <div class="absolute inset-0 flex items-center justify-start pointer-events-none select-none overflow-hidden pl-4 lg:pl-10">
+    <span style="font-size:clamp(8rem,22vw,22rem);font-weight:400;color:rgba(255,255,255,.018);letter-spacing:-.03em;line-height:1;font-family:'Montserrat',sans-serif;text-transform:uppercase">BARBER</span>
+  </div>
+
+  <!-- Left accent line -->
+  <div class="absolute left-0 top-0 bottom-0 w-px" style="background:linear-gradient(180deg,transparent,var(--gold) 30%,var(--gold) 70%,transparent);opacity:.35"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 w-full py-20 lg:py-28 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+      <!-- Left: Copy -->
+      <div style="animation:fadeUp .7s ease .1s both">
+
+        <!-- Main headline -->
+        <h1 class="font-sans font-300 text-ivory uppercase leading-none mb-6 lang-nl" style="font-size:clamp(2.8rem,7.5vw,6rem);letter-spacing:-0.01em;line-height:.95">
+          De Meester<br/>
+          <span class="shimmer-text">in Heren-</span><br/>
+          kapsels.
+        </h1>
+        <h1 class="font-sans font-300 text-ivory uppercase leading-none mb-6 lang-en hidden" style="font-size:clamp(2.8rem,7.5vw,6rem);letter-spacing:-0.01em;line-height:.95">
+          The Master<br/>
+          <span class="shimmer-text">in Men's</span><br/>
+          Haircuts.
+        </h1>
+
+        <!-- Sub headline -->
+        <p class="text-silk leading-relaxed mb-8 max-w-md lang-nl" style="font-size:14px;font-weight:400">
+          Al meer dan <strong class="text-ivory font-500">12 jaar ervaring</strong> in het vak. Topkwaliteit kapsels, baardtrims en styling — elke keer perfect uitgevoerd.
+        </p>
+        <p class="text-silk leading-relaxed mb-8 max-w-md lang-en hidden" style="font-size:14px;font-weight:400">
+          Over <strong class="text-ivory font-500">12 years of experience</strong> in the craft. Top quality haircuts, beard trims and styling — perfectly executed every time.
+        </p>
+
+        <!-- Single CTA -->
+        <div style="animation:fadeUp .7s ease .3s both">
+          <button onclick="openModal()" class="btn-primary" style="border-radius:2px;font-size:12px;padding:16px 34px">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            <span class="lang-nl">Maak een Afspraak</span>
+            <span class="lang-en hidden">Make an Appointment</span>
+          </button>
+        </div>
+
+        <!-- Feature list: horizontal icon-led items -->
+        <div class="flex flex-wrap gap-x-6 gap-y-3 mt-8" style="animation:fadeUp .7s ease .45s both">
+          <div class="flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            <span style="font-size:11px;letter-spacing:.06em;font-weight:500;color:var(--silk)" class="lang-nl">Top Kwaliteit Tools</span>
+            <span style="font-size:11px;letter-spacing:.06em;font-weight:500;color:var(--silk)" class="lang-en hidden">Top Quality Tools</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            <span style="font-size:11px;letter-spacing:.06em;font-weight:500;color:var(--silk)" class="lang-nl">Hygiënische Omgeving</span>
+            <span style="font-size:11px;letter-spacing:.06em;font-weight:500;color:var(--silk)" class="lang-en hidden">Hygienic Environment</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            <span style="font-size:11px;letter-spacing:.06em;font-weight:500;color:var(--silk)" class="lang-nl">Persoonlijke Styling</span>
+            <span style="font-size:11px;letter-spacing:.06em;font-weight:500;color:var(--silk)" class="lang-en hidden">Personal Styling</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-3.5 h-3.5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>
+            <span style="font-size:11px;letter-spacing:.06em;font-weight:500;color:var(--silk)" class="lang-nl">Op Afspraak & Walk-in</span>
+            <span style="font-size:11px;letter-spacing:.06em;font-weight:500;color:var(--silk)" class="lang-en hidden">By Appointment & Walk-in</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Visual block -->
+      <div class="hidden lg:flex justify-center" style="animation:fadeUp .7s ease .25s both">
+        <div class="hero-visual w-72 h-[430px]" style="border-radius:2px">
+          <!-- Inner texture lines -->
+          <div class="absolute inset-0" style="background:repeating-linear-gradient(135deg,rgba(192,154,42,.04) 0,rgba(192,154,42,.04) 1px,transparent 1px,transparent 44px)"></div>
+
+          <!-- Center content -->
+          <div class="absolute inset-0 flex flex-col items-center justify-center gap-5 relative z-10">
+            <!-- Scissors SVG, stylized -->
+            <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1" style="width:70px;height:70px;color:rgba(192,154,42,.3)">
+              <circle cx="20" cy="20" r="10"/>
+              <circle cx="20" cy="60" r="10"/>
+              <line x1="28" y1="28" x2="68" y2="68"/>
+              <line x1="28" y1="52" x2="68" y2="12"/>
+            </svg>
+            <div class="text-center px-10">
+              <div style="font-size:18px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--ivory);line-height:1">Two in One</div>
+              <div class="g-line w-12 mx-auto my-2"></div>
+              <div style="font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:12px;letter-spacing:.1em">Barberstudio · Rijswijk</div>
+            </div>
+          </div>
+
+          <!-- Corner accents -->
+          <div style="position:absolute;top:18px;left:18px;width:22px;height:22px;border-left:1px solid rgba(192,154,42,.35);border-top:1px solid rgba(192,154,42,.35)"></div>
+          <div style="position:absolute;top:18px;right:18px;width:22px;height:22px;border-right:1px solid rgba(192,154,42,.35);border-top:1px solid rgba(192,154,42,.35)"></div>
+          <div style="position:absolute;bottom:18px;left:18px;width:22px;height:22px;border-left:1px solid rgba(192,154,42,.35);border-bottom:1px solid rgba(192,154,42,.35)"></div>
+          <div style="position:absolute;bottom:18px;right:18px;width:22px;height:22px;border-right:1px solid rgba(192,154,42,.35);border-bottom:1px solid rgba(192,154,42,.35)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fade to next section -->
+  <div class="absolute bottom-0 left-0 right-0 h-24" style="background:linear-gradient(to top,#09090A,transparent);pointer-events:none"></div>
+
+  <!-- Scroll cue -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" style="opacity:.3;animation:fadeUp .5s ease 1.2s both">
+    <div class="w-px h-10" style="background:linear-gradient(to bottom,var(--gold),transparent)"></div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+  STATS BAR
+═══════════════════════════════════════════════════ -->
+<div class="stats-bar py-8 reveal">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-iron">
+
+      <!-- Stat: Google rating -->
+      <div class="stat-item justify-center lg:justify-start lg:px-10">
+        <div class="stat-icon">
+          <svg class="w-5 h-5 star-pulse" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <div>
+          <div style="font-size:18px;font-weight:400;color:var(--gold);letter-spacing:-.01em">5.0</div>
+          <div class="lang-nl" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--mist);margin-top:2px">45+ Google Reviews</div>
+          <div class="lang-en hidden" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--mist);margin-top:2px">45+ Google Reviews</div>
+        </div>
+      </div>
+
+      <!-- Stat: Experience -->
+      <div class="stat-item justify-center lg:justify-start lg:px-10">
+        <div class="stat-icon">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div>
+          <div style="font-size:18px;font-weight:400;color:var(--gold);letter-spacing:-.01em">12+</div>
+          <div class="lang-nl" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--mist);margin-top:2px">Jaren Ervaring</div>
+          <div class="lang-en hidden" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--mist);margin-top:2px">Years Experience</div>
+        </div>
+      </div>
+
+      <!-- Stat: Clients -->
+      <div class="stat-item justify-center lg:justify-start lg:px-10">
+        <div class="stat-icon">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div>
+          <div style="font-size:18px;font-weight:400;color:var(--gold);letter-spacing:-.01em">1000+</div>
+          <div class="lang-nl" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--mist);margin-top:2px">Tevreden Klanten</div>
+          <div class="lang-en hidden" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--mist);margin-top:2px">Happy Clients</div>
+        </div>
+      </div>
+
+      <!-- Stat: Hours -->
+      <div class="stat-item justify-center lg:justify-start lg:px-10">
+        <div class="stat-icon">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div>
+          <div style="font-size:18px;font-weight:400;color:var(--gold);letter-spacing:-.01em">20:00</div>
+          <div class="lang-nl" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--mist);margin-top:2px">Dagelijks Open Tot</div>
+          <div class="lang-en hidden" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--mist);margin-top:2px">Open Daily Until</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+  DIENSTEN / SERVICES
+═══════════════════════════════════════════════════ -->
+<section id="diensten" class="py-28 lg:py-36" style="background:#09090A;position:relative;overflow:hidden">
+
+  <!-- Background grid -->
+  <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(rgba(192,154,42,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(192,154,42,.025) 1px,transparent 1px);background-size:56px 56px;opacity:1"></div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+
+    <!-- Section header -->
+    <div class="mb-14 reveal">
+      <span class="section-tag lang-nl">Wat wij aanbieden</span>
+      <span class="section-tag lang-en hidden">What we offer</span>
+      <h2 class="font-sans font-400 text-ivory uppercase lang-nl" style="font-size:clamp(2rem,5vw,3.5rem);letter-spacing:-0.01em;line-height:1">Onze Diensten</h2>
+      <h2 class="font-sans font-400 text-ivory uppercase lang-en hidden" style="font-size:clamp(2rem,5vw,3.5rem);letter-spacing:-0.01em;line-height:1">Our Services</h2>
+      <div class="g-line w-14 mt-5"></div>
+    </div>
+
+    <!-- Services grid -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+
+      <!-- Knippen -->
+      <div class="svc-card p-7 reveal flex flex-col gap-5" style="border-radius:2px">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-nl">Knippen</h3>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-en hidden">Haircut</h3>
+          </div>
+          <span style="font-size:20px;font-weight:400;color:var(--gold);letter-spacing:-.01em;white-space:nowrap">€20</span>
+        </div>
+        <div class="g-line"></div>
+        <p class="text-mist leading-relaxed flex-1 lang-nl" style="font-size:12px">Klassiek of modern kapsel, volledig afgestemd op jouw stijl en gezichtsvorm.</p>
+        <p class="text-mist leading-relaxed flex-1 lang-en hidden" style="font-size:12px">Classic or modern cut, fully tailored to your style and face shape.</p>
+        <button onclick="openModal()" class="btn-ghost w-full" style="justify-content:center;font-size:10px;padding:11px 20px;border-radius:2px">
+          <span class="lang-nl">Boek Nu</span><span class="lang-en hidden">Book Now</span>
+        </button>
+      </div>
+
+      <!-- Baard Trimmen -->
+      <div class="svc-card p-7 reveal flex flex-col gap-5" style="border-radius:2px;transition-delay:.07s">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-nl">Baard Trimmen</h3>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-en hidden">Beard Trim</h3>
+          </div>
+          <span style="font-size:20px;font-weight:400;color:var(--gold);letter-spacing:-.01em;white-space:nowrap">€15</span>
+        </div>
+        <div class="g-line"></div>
+        <p class="text-mist leading-relaxed flex-1 lang-nl" style="font-size:12px">Scherp, gedefinieerd en perfect in vorm. Jouw baard op zijn best.</p>
+        <p class="text-mist leading-relaxed flex-1 lang-en hidden" style="font-size:12px">Sharp, defined and perfectly shaped. Your beard at its best.</p>
+        <button onclick="openModal()" class="btn-ghost w-full" style="justify-content:center;font-size:10px;padding:11px 20px;border-radius:2px">
+          <span class="lang-nl">Boek Nu</span><span class="lang-en hidden">Book Now</span>
+        </button>
+      </div>
+
+      <!-- Knippen + Baard (Popular) -->
+      <div class="svc-card p-7 reveal flex flex-col gap-5" style="border-radius:2px;border-color:rgba(192,154,42,.3);transition-delay:.14s">
+        <div class="badge-popular lang-nl">Populair</div>
+        <div class="badge-popular lang-en hidden">Popular</div>
+        <div class="flex items-start justify-between gap-4 pr-14">
+          <div>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-nl">Knippen + Baard</h3>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-en hidden">Cut + Beard</h3>
+          </div>
+          <span style="font-size:20px;font-weight:400;color:var(--gold);letter-spacing:-.01em;white-space:nowrap">€32</span>
+        </div>
+        <div class="g-line" style="background:linear-gradient(90deg,transparent,var(--gold) 40%,var(--gold) 60%,transparent)"></div>
+        <p class="text-mist leading-relaxed flex-1 lang-nl" style="font-size:12px">De complete behandeling: perfect kapsel en verzorgde baard in één sessie.</p>
+        <p class="text-mist leading-relaxed flex-1 lang-en hidden" style="font-size:12px">The complete treatment: perfect cut and groomed beard in one session.</p>
+        <button onclick="openModal()" class="btn-primary w-full" style="justify-content:center;font-size:10px;padding:11px 20px;border-radius:2px">
+          <span class="lang-nl">Boek Nu</span><span class="lang-en hidden">Book Now</span>
+        </button>
+      </div>
+
+      <!-- Scheren -->
+      <div class="svc-card p-7 reveal flex flex-col gap-5" style="border-radius:2px;transition-delay:.21s">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-nl">Scheren</h3>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-en hidden">Shave</h3>
+          </div>
+          <span style="font-size:20px;font-weight:400;color:var(--gold);letter-spacing:-.01em;white-space:nowrap">€22</span>
+        </div>
+        <div class="g-line"></div>
+        <p class="text-mist leading-relaxed flex-1 lang-nl" style="font-size:12px">Klassieke scheerbeurt met warme lathers — een rituele ervaring voor de moderne man.</p>
+        <p class="text-mist leading-relaxed flex-1 lang-en hidden" style="font-size:12px">Classic shave with warm lather — a ritual experience for the modern man.</p>
+        <button onclick="openModal()" class="btn-ghost w-full" style="justify-content:center;font-size:10px;padding:11px 20px;border-radius:2px">
+          <span class="lang-nl">Boek Nu</span><span class="lang-en hidden">Book Now</span>
+        </button>
+      </div>
+
+      <!-- Haar + Baard Pakket -->
+      <div class="svc-card p-7 reveal flex flex-col gap-5" style="border-radius:2px;transition-delay:.28s">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-nl">Haar + Baard Pakket</h3>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-en hidden">Hair + Beard Package</h3>
+          </div>
+          <span style="font-size:20px;font-weight:400;color:var(--gold);letter-spacing:-.01em;white-space:nowrap">€42</span>
+        </div>
+        <div class="g-line"></div>
+        <p class="text-mist leading-relaxed flex-1 lang-nl" style="font-size:12px">De premium optie: knippen, baard trimmen en scheren — voor de man die het beste wil.</p>
+        <p class="text-mist leading-relaxed flex-1 lang-en hidden" style="font-size:12px">The premium option: cut, beard trim and shave — for the man who wants the best.</p>
+        <button onclick="openModal()" class="btn-ghost w-full" style="justify-content:center;font-size:10px;padding:11px 20px;border-radius:2px">
+          <span class="lang-nl">Boek Nu</span><span class="lang-en hidden">Book Now</span>
+        </button>
+      </div>
+
+      <!-- Jeugd Knippen -->
+      <div class="svc-card p-7 reveal flex flex-col gap-5" style="border-radius:2px;transition-delay:.35s">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-nl">Jeugd Knippen</h3>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-en hidden">Youth Haircut</h3>
+          </div>
+          <span style="font-size:20px;font-weight:400;color:var(--gold);letter-spacing:-.01em;white-space:nowrap">€15</span>
+        </div>
+        <div class="g-line"></div>
+        <p class="text-mist leading-relaxed flex-1 lang-nl" style="font-size:12px">Speciaal tarief voor jeugd tot 14 jaar. Zelfde topkwaliteit, geweldige prijs.</p>
+        <p class="text-mist leading-relaxed flex-1 lang-en hidden" style="font-size:12px">Special rate for youth up to 14 years. Same top quality, great price.</p>
+        <button onclick="openModal()" class="btn-ghost w-full" style="justify-content:center;font-size:10px;padding:11px 20px;border-radius:2px">
+          <span class="lang-nl">Boek Nu</span><span class="lang-en hidden">Book Now</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+  LOCATIE / LOCATION
+═══════════════════════════════════════════════════ -->
+<section id="locatie" class="py-20 lg:py-28" style="background:#09090A;position:relative;border-top:1px solid rgba(192,154,42,.12)">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10 reveal">
+      <div>
+        <span class="section-tag lang-nl">Vind Ons</span>
+        <span class="section-tag lang-en hidden">Find Us</span>
+        <h2 class="font-sans font-400 text-ivory uppercase lang-nl" style="font-size:clamp(1.8rem,4vw,3.5rem);letter-spacing:-0.01em;line-height:1">Onze Locatie</h2>
+        <h2 class="font-sans font-400 text-ivory uppercase lang-en hidden" style="font-size:clamp(1.8rem,4vw,3.5rem);letter-spacing:-0.01em;line-height:1">Our Location</h2>
+        <div class="g-line w-14 mt-5"></div>
+      </div>
+      <div class="flex items-center gap-3">
+        <svg class="w-5 h-5 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        <div style="font-size:13px;line-height:1.7;color:var(--silk)">Visseringlaan 19<br/>2288 ER Rijswijk</div>
+      </div>
+    </div>
+    
+    <div class="reveal map-iframe w-full h-[300px] md:h-[500px]" style="border-radius:2px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(192,154,42,.22);overflow:hidden;">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2454.6738901844996!2d4.338276676839352!3d52.0305018719363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b651500f135b%3A0xc47e3bf8e2e77b4d!2sVisseringlaan%2019%2C%202288%20ER%20Rijswijk!5e0!3m2!1sen!2snl!4v1714486500000!5m2!1sen!2snl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    
+    <div class="text-center mt-6 reveal">
+      <a href="https://maps.app.goo.gl/nQ3fzx87LztD5Ee77" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex">
+        <span class="lang-nl">Open in Google Maps</span>
+        <span class="lang-en hidden">Open in Google Maps</span>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+  OVER ONS / ABOUT
+═══════════════════════════════════════════════════ -->
+<section id="over-ons" class="py-28 lg:py-36" style="background:linear-gradient(160deg,#161618 0%,#09090A 100%)">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+      <!-- Visual -->
+      <div class="reveal order-2 lg:order-1">
+        <div class="relative max-w-sm mx-auto">
+          <div style="aspect-ratio:4/5;background:linear-gradient(145deg,#26262A,#1E1E21,#161618);border:1px solid rgba(192,154,42,.18);border-radius:2px;position:relative;overflow:hidden">
+            <div style="position:absolute;inset:0;background:repeating-linear-gradient(-45deg,rgba(192,154,42,.035) 0,rgba(192,154,42,.035) 1px,transparent 1px,transparent 48px)"></div>
+            <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px">
+              <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2" style="width:90px;height:90px;color:rgba(192,154,42,.25)">
+                <circle cx="25" cy="25" r="12"/>
+                <circle cx="25" cy="75" r="12"/>
+                <line x1="34" y1="34" x2="80" y2="80"/>
+                <line x1="34" y1="66" x2="80" y2="20"/>
+              </svg>
+              <div style="text-align:center;padding:0 30px">
+                <div style="font-size:20px;font-weight:400;letter-spacing:.2em;color:var(--ivory);text-transform:uppercase;line-height:1">Two in One</div>
+                <div class="g-line w-12 mx-auto my-3"></div>
+                <div style="font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:12px;letter-spacing:.1em">Barberstudio · Rijswijk</div>
+              </div>
+            </div>
+            <!-- Corner marks -->
+            <div style="position:absolute;top:16px;left:16px;width:20px;height:20px;border-left:1px solid rgba(192,154,42,.3);border-top:1px solid rgba(192,154,42,.3)"></div>
+            <div style="position:absolute;top:16px;right:16px;width:20px;height:20px;border-right:1px solid rgba(192,154,42,.3);border-top:1px solid rgba(192,154,42,.3)"></div>
+            <div style="position:absolute;bottom:16px;left:16px;width:20px;height:20px;border-left:1px solid rgba(192,154,42,.3);border-bottom:1px solid rgba(192,154,42,.3)"></div>
+            <div style="position:absolute;bottom:16px;right:16px;width:20px;height:20px;border-right:1px solid rgba(192,154,42,.3);border-bottom:1px solid rgba(192,154,42,.3)"></div>
+          </div>
+          <!-- Years badge -->
+          <div style="position:absolute;bottom:-18px;right:-18px;background:#1E1E21;border:1px solid rgba(192,154,42,.28);padding:16px 20px;box-shadow:0 16px 40px rgba(0,0,0,.5);text-align:center;border-radius:2px">
+            <div style="font-size:26px;font-weight:400;color:var(--gold);line-height:1">12+</div>
+            <div class="lang-nl" style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--mist);margin-top:3px">Jaar Vakmanschap</div>
+            <div class="lang-en hidden" style="font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;color:var(--mist);margin-top:3px">Years of Craft</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Copy -->
+      <div class="order-1 lg:order-2 reveal" style="transition-delay:.18s">
+        <span class="section-tag lang-nl">Ons verhaal</span>
+        <span class="section-tag lang-en hidden">Our story</span>
+        <h2 class="font-sans font-400 text-ivory uppercase mb-5 lang-nl" style="font-size:clamp(1.8rem,4vw,3rem);letter-spacing:-0.01em;line-height:1.05">Meer Dan Een Kapperszaak</h2>
+        <h2 class="font-sans font-400 text-ivory uppercase mb-5 lang-en hidden" style="font-size:clamp(1.8rem,4vw,3rem);letter-spacing:-0.01em;line-height:1.05">More Than a Barbershop</h2>
+        <div class="g-line w-12 mb-7"></div>
+
+        <div class="flex flex-col gap-4" style="font-size:13px;line-height:1.75;color:var(--silk)">
+          <p class="lang-nl">Bij <strong style="color:var(--ivory);font-weight:500">Two in One Barberstudio</strong> in Rijswijk draait alles om precisie, vakmanschap en persoonlijke aandacht. Al meer dan 12 jaar verwelkomen wij onze klanten in een sfeervolle, professionele omgeving.</p>
+          <p class="lang-en hidden">At <strong style="color:var(--ivory);font-weight:500">Two in One Barberstudio</strong> in Rijswijk, everything revolves around precision, craftsmanship and personal attention. For over 12 years we've welcomed clients in a warm, professional environment.</p>
+
+          <p class="lang-nl">Wij zijn geen gewone kapper — wij zijn uw persoonlijke stylist. Of u nu zoekt naar een klassieke coupe of moderne fade, wij leveren altijd exact wat u wilt.</p>
+          <p class="lang-en hidden">We are not just any barber — we are your personal stylist. Whether you're looking for a classic cut or modern fade, we always deliver exactly what you want.</p>
+
+          <p class="lang-nl">Onze studio staat bekend om de perfecte <strong style="color:var(--ivory);font-weight:500">netheid</strong>, <strong style="color:var(--ivory);font-weight:500">stipte tijdigheid</strong> en de warme sfeer die onze vaste klanten al meer dan een decennium waarderen.</p>
+          <p class="lang-en hidden">Our studio is known for its perfect <strong style="color:var(--ivory);font-weight:500">cleanliness</strong>, <strong style="color:var(--ivory);font-weight:500">punctuality</strong> and warm atmosphere that loyal clients have appreciated for over a decade.</p>
+        </div>
+
+        <button onclick="openModal()" class="btn-primary mt-8" style="border-radius:2px">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <span class="lang-nl">Maak een Afspraak</span>
+          <span class="lang-en hidden">Make an Appointment</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+  REVIEWS / TESTIMONIALS
+═══════════════════════════════════════════════════ -->
+<section id="reviews" class="py-28 lg:py-36" style="background:#09090A;position:relative;overflow:hidden">
+
+  <!-- Big quote BG -->
+  <div style="position:absolute;top:40px;left:20px;font-family:'Cormorant',serif;font-size:clamp(12rem,28vw,22rem);color:rgba(192,154,42,.028);line-height:1;pointer-events:none;select-text:none;user-select:none">&ldquo;</div>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 reveal">
+      <div>
+        <span class="section-tag lang-nl">Wat klanten zeggen</span>
+        <span class="section-tag lang-en hidden">What clients say</span>
+        <h2 class="font-sans font-400 text-ivory uppercase" style="font-size:clamp(2rem,5vw,3.5rem);letter-spacing:-0.01em;line-height:1">Reviews</h2>
+        <div class="g-line w-14 mt-5"></div>
+      </div>
+      <!-- Overall rating chip -->
+      <div style="display:flex;align-items:center;gap:12px;background:#1E1E21;border:1px solid rgba(192,154,42,.18);padding:12px 20px;border-radius:2px;flex-shrink:0">
+        <svg class="w-5 h-5 star-pulse" style="color:var(--gold)" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <div>
+          <div style="font-size:22px;font-weight:400;color:var(--gold);line-height:1">5.0</div>
+          <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--mist);margin-top:2px" class="lang-nl">45+ beoordelingen</div>
+          <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:500;color:var(--mist);margin-top:2px" class="lang-en hidden">45+ reviews</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5 reveal">
+
+      <!-- Review: George Ashley -->
+      <div class="rev-card p-7 flex flex-col gap-5" style="border-radius:2px">
+        <div class="flex gap-1">
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p style="font-family:'Cormorant',serif;font-style:italic;font-size:14px;color:rgba(192,154,42,.38);line-height:1">&ldquo;</p>
+        <p class="text-silk leading-relaxed flex-1 lang-nl" style="font-size:13px;font-style:italic">Een moderne en respectvolle plek waar je niet alleen geknipt wordt, maar ook kunt ontspannen. Een absolute professional!</p>
+        <p class="text-silk leading-relaxed flex-1 lang-en hidden" style="font-size:13px;font-style:italic">A modern and respectful place where you don't just get a haircut, but can also relax. An absolute professional!</p>
+        <div class="flex items-center gap-3">
+          <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-d));display:flex;align-items:center;justify-content:center;font-weight:400;font-size:11px;color:#09090A;flex-shrink:0">GA</div>
+          <div>
+            <div style="font-size:12px;font-weight:500;color:var(--ivory);letter-spacing:.04em">George Ashley</div>
+            <div style="font-size:10px;color:var(--mist);margin-top:1px">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review: Djaga Droom -->
+      <div class="rev-card p-7 flex flex-col gap-5" style="border-radius:2px;transition-delay:.12s">
+        <div class="flex gap-1">
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p style="font-family:'Cormorant',serif;font-style:italic;font-size:14px;color:rgba(192,154,42,.38);line-height:1">&ldquo;</p>
+        <p class="text-silk leading-relaxed flex-1 lang-nl" style="font-size:13px;font-style:italic">Altijd netjes, op tijd en een schone salon. Al 12 jaar vaste klant en nooit teleurgesteld. Een absolute aanrader!</p>
+        <p class="text-silk leading-relaxed flex-1 lang-en hidden" style="font-size:13px;font-style:italic">Always neat, on time and a clean salon. A loyal client for 12 years and never disappointed. An absolute recommendation!</p>
+        <div class="flex items-center gap-3">
+          <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#B87A10,#8A6E1A);display:flex;align-items:center;justify-content:center;font-weight:400;font-size:11px;color:#09090A;flex-shrink:0">DD</div>
+          <div>
+            <div style="font-size:12px;font-weight:500;color:var(--ivory);letter-spacing:.04em">Djaga Droom</div>
+            <div style="font-size:10px;color:var(--mist);margin-top:1px">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review: Eric Beckman Lapre -->
+      <div class="rev-card p-7 flex flex-col gap-5" style="border-radius:2px;transition-delay:.24s">
+        <div class="flex gap-1">
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        </div>
+        <p style="font-family:'Cormorant',serif;font-style:italic;font-size:14px;color:rgba(192,154,42,.38);line-height:1">&ldquo;</p>
+        <p class="text-silk leading-relaxed flex-1 lang-nl" style="font-size:13px;font-style:italic">Geweldige, vriendelijke kapper die mijn haar al jaren precies knipt zoals ik het wil. 100% geen spijt.</p>
+        <p class="text-silk leading-relaxed flex-1 lang-en hidden" style="font-size:13px;font-style:italic">Great, friendly barber who has been cutting my hair exactly the way I want for years. 100% no regrets.</p>
+        <div class="flex items-center gap-3">
+          <div style="width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--iron),var(--forge));display:flex;align-items:center;justify-content:center;font-weight:400;font-size:9px;color:var(--ivory);flex-shrink:0">EBL</div>
+          <div>
+            <div style="font-size:12px;font-weight:500;color:var(--ivory);letter-spacing:.04em">Eric Beckman Lapre</div>
+            <div style="font-size:10px;color:var(--mist);margin-top:1px">Google Review</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-10 reveal">
+      <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex">
+        <span class="lang-nl">Alle reviews op Google bekijken</span>
+        <span class="lang-en hidden">View all reviews on Google</span>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+  CTA BANNER
+═══════════════════════════════════════════════════ -->
+<div class="py-20 reveal" style="background:linear-gradient(135deg,#1E1E21 0%,#161618 100%);border-top:1px solid rgba(192,154,42,.12);border-bottom:1px solid rgba(192,154,42,.12);position:relative;overflow:hidden">
+  <div style="position:absolute;right:0;top:0;bottom:0;width:40%;background:linear-gradient(90deg,transparent,rgba(192,154,42,.06));pointer-events:none"></div>
+  <div class="max-w-3xl mx-auto px-6 lg:px-10 text-center relative z-10">
+    <span class="eyebrow lang-nl" style="display:block;margin-bottom:12px">Klaar voor uw nieuwe look?</span>
+    <span class="eyebrow lang-en hidden" style="display:block;margin-bottom:12px">Ready for your new look?</span>
+    <h2 class="font-sans font-400 text-ivory uppercase mb-5 lang-nl" style="font-size:clamp(1.8rem,4vw,3rem);letter-spacing:-0.01em">Boek Vandaag Nog</h2>
+    <h2 class="font-sans font-400 text-ivory uppercase mb-5 lang-en hidden" style="font-size:clamp(1.8rem,4vw,3rem);letter-spacing:-0.01em">Book Today</h2>
+    <p class="text-silk mb-8 lang-nl" style="font-size:13px">Geopend tot 20:00. Afspraken & walk-ins welkom. Bel ons of boek direct online.</p>
+    <p class="text-silk mb-8 lang-en hidden" style="font-size:13px">Open until 20:00. Appointments & walk-ins welcome. Call or book online directly.</p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <button onclick="openModal()" class="btn-primary" style="border-radius:2px">
+        <span class="lang-nl">Maak een Afspraak</span>
+        <span class="lang-en hidden">Make an Appointment</span>
+      </button>
+      <a href="tel:0648539573" class="btn-ghost" style="border-radius:2px">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+        06 48539573
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════
+  FOOTER / CONTACT
+═══════════════════════════════════════════════════ -->
+<footer id="contact" style="background:#09090A;padding-top:72px;padding-bottom:40px">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10">
+    <div class="grid lg:grid-cols-2 gap-14 mb-14 reveal">
+
+      <!-- Col 1 -->
+      <div>
+        <div class="flex items-center gap-3 mb-6">
+          <div style="width:32px;height:32px;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;transform:rotate(45deg)">
+            <span style="transform:rotate(-45deg);font-size:8px;font-weight:400;color:var(--gold)">2:1</span>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory);line-height:1">Two in One</div>
+            <div style="font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:9px;letter-spacing:.1em;margin-top:2px">Barberstudio</div>
+          </div>
+        </div>
+        <p class="text-mist lang-nl" style="font-size:12px;line-height:1.8;max-width:240px">Uw premium barberstudio in Rijswijk. Topkwaliteit, onberispelijke service, al meer dan 12 jaar.</p>
+        <p class="text-mist lang-en hidden" style="font-size:12px;line-height:1.8;max-width:240px">Your premium barbershop in Rijswijk. Top quality, impeccable service, for over 12 years.</p>
+
+        <!-- Social icons -->
+        <div class="flex gap-3 mt-5">
+          <a href="#" aria-label="Instagram" style="width:34px;height:34px;border:1px solid var(--iron);display:flex;align-items:center;justify-content:center;color:var(--mist);transition:border-color .2s,color .2s;border-radius:2px" class="hover:border-gold hover:text-gold">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" aria-label="Facebook" style="width:34px;height:34px;border:1px solid var(--iron);display:flex;align-items:center;justify-content:center;color:var(--mist);transition:border-color .2s,color .2s;border-radius:2px" class="hover:border-gold hover:text-gold">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="#" aria-label="WhatsApp" style="width:34px;height:34px;border:1px solid var(--iron);display:flex;align-items:center;justify-content:center;color:var(--mist);transition:border-color .2s,color .2s;border-radius:2px" class="hover:border-gold hover:text-gold">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Col 2: Contact -->
+      <div>
+        <h4 class="font-sans font-500 text-ivory uppercase tracking-widest mb-4" style="font-size:11px">Contact</h4>
+        <div class="g-line w-10 mb-6"></div>
+        <div class="flex flex-col gap-5">
+          <div class="flex gap-3">
+            <svg class="w-4 h-4 text-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <div style="font-size:12px;line-height:1.7;color:var(--silk)">Visseringlaan 19<br/>2288 ER Rijswijk</div>
+          </div>
+          <div class="flex items-center gap-3">
+            <svg class="w-4 h-4 text-gold flex-shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <a href="tel:0648539573" style="font-size:12px;color:var(--ivory);transition:color .2s" class="hover:text-gold">06 48539573</a>
+          </div>
+          <div class="flex gap-3">
+            <svg class="w-4 h-4 text-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            <div style="font-size:12px;color:var(--silk);line-height:1.7">
+              <span class="lang-nl">Ma – Za: geopend tot <strong style="color:var(--ivory)">20:00</strong><br/><span style="color:var(--mist)">Walk-ins welkom</span></span>
+              <span class="lang-en hidden">Mon – Sat: open until <strong style="color:var(--ivory)">20:00</strong><br/><span style="color:var(--mist)">Walk-ins welcome</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="g-line mb-6"></div>
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p style="font-size:11px;color:var(--iron)" class="lang-nl">© 2025 Two in One Barberstudio. Alle rechten voorbehouden.</p>
+      <p style="font-size:11px;color:var(--iron)" class="lang-en hidden">© 2025 Two in One Barberstudio. All rights reserved.</p>
+      <div style="display:flex;align-items:center;gap:8px">
+        <div style="width:6px;height:6px;border-radius:50%;background:#22c55e;animation:pulsegold 2s infinite"></div>
+        <span style="font-size:11px;color:var(--mist)" class="lang-nl">Nu geopend · Open tot 20:00</span>
+        <span style="font-size:11px;color:var(--mist)" class="lang-en hidden">Now open · Until 20:00</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════════════════
+  JAVASCRIPT
+═══════════════════════════════════════════════════ -->
+<script>
+/* ── State ─────────────────────────────────────── */
+let currentStep = 1;
+let booking = { service:'', price:'', barber:'', date:'', time:'' };
+
+/* ── Language ──────────────────────────────────── */
+let currentLang = 'nl'; // Default: Dutch
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-nl').forEach(el => el.classList.toggle('hidden', lang !== 'nl'));
+  document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('hidden', lang !== 'en'));
+  document.getElementById('btn-nl').classList.toggle('active', lang === 'nl');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang;
+}
+
+/* ── Nav: scroll effect ────────────────────────── */
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+}, { passive:true });
+
+/* ── Logo hover ────────────────────────────────── */
+const logoDiamond = document.getElementById('logo-diamond');
+const logoText    = document.getElementById('logo-text');
+if (logoDiamond) {
+  logoDiamond.addEventListener('mouseenter', () => {
+    logoDiamond.style.transform = 'rotate(0deg)';
+    logoText.style.transform    = 'rotate(0deg)';
+  });
+  logoDiamond.addEventListener('mouseleave', () => {
+    logoDiamond.style.transform = 'rotate(45deg)';
+    logoText.style.transform    = 'rotate(-45deg)';
+  });
+}
+
+/* ── Mobile menu ───────────────────────────────── */
+function toggleMenu() {
+  const m = document.getElementById('mobile-menu');
+  const h = document.getElementById('hamburger');
+  m.classList.toggle('open');
+  h.classList.toggle('open');
+}
+function closeMobileMenu() {
+  document.getElementById('mobile-menu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+/* ── Modal open / close ────────────────────────── */
+function openModal() {
+  goStep(1);
+  document.getElementById('booking-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('booking-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function outsideClose(e) {
+  if (e.target === document.getElementById('booking-modal')) closeModal();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ── Step navigation ───────────────────────────── */
+function goStep(n) {
+  // Hide all panels
+  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('step-' + n).classList.add('active');
+  currentStep = n;
+
+  // Update dots
+  for (let i = 1; i <= 4; i++) {
+    const dot  = document.getElementById('dot-' + i);
+    dot.classList.remove('active','done');
+    if (i < n)       dot.classList.add('done');
+    else if (i === n) dot.classList.add('active');
+  }
+  // Update connectors
+  for (let i = 1; i <= 3; i++) {
+    const conn = document.getElementById('conn-' + i + '-' + (i+1));
+    conn.classList.toggle('done', i < n);
+  }
+
+  // Update step 4 summary
+  if (n === 4) updateSummary();
+
+  // Scroll modal to top
+  const box = document.querySelector('.modal-box');
+  if (box) box.scrollTop = 0;
+}
+
+/* ── Step 1: Service ───────────────────────────── */
+function selectService(btn, service, price) {
+  document.querySelectorAll('.svc-opt').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  booking.service = service;
+  booking.price   = price;
+  const next = document.getElementById('step1-next');
+  next.disabled = false;
+  next.style.opacity = '1';
+  next.style.cursor  = 'pointer';
+}
+
+/* ── Step 2: Barber ────────────────────────────── */
+function selectBarber(btn, barber) {
+  document.querySelectorAll('.barber-card').forEach(b => b.classList.remove('selected'));
+  btn.classList.add('selected');
+  booking.barber = barber;
+  const next = document.getElementById('step2-next');
+  next.disabled = false;
+  next.style.opacity = '1';
+  next.style.cursor  = 'pointer';
+}
+
+/* ── Step 3: Calendar ──────────────────────────── */
+let calYear, calMonth;
+const monthsNL = ['Januari','Februari','Maart','April','Mei','Juni','Juli','Augustus','September','Oktober','November','December'];
+const monthsEN = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+let selectedDate = null;
+let selectedTime = null;
+
+// Time slots (mock)
+const allSlots = ['09:00','09:30','10:00','10:30','11:00','11:30','12:00','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30'];
+const takenSlots = ['10:00','11:30','14:00','16:30']; // Mock taken slots
+
+function renderCalendar() {
+  const now = new Date();
+  if (calYear === undefined) { calYear = now.getFullYear(); calMonth = now.getMonth(); }
+  const months = currentLang === 'nl' ? monthsNL : monthsEN;
+  document.getElementById('cal-month-label').textContent = months[calMonth] + ' ' + calYear;
+  const grid = document.getElementById('cal-grid');
+  grid.innerHTML = '';
+  const first = new Date(calYear, calMonth, 1).getDay();
+  const offset = (first === 0) ? 6 : first - 1; // Monday-first
+  const days = new Date(calYear, calMonth + 1, 0).getDate();
+  const today = now.toDateString();
+
+  for (let i = 0; i < offset; i++) {
+    const d = document.createElement('div');
+    d.className = 'cal-day empty';
+    grid.appendChild(d);
+  }
+  for (let d = 1; d <= days; d++) {
+    const dateObj = new Date(calYear, calMonth, d);
+    const isPast  = dateObj < new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    const isToday = dateObj.toDateString() === today;
+    const dateStr = dateObj.toISOString().split('T')[0];
+    const el = document.createElement('div');
+    el.textContent = d;
+    el.className   = 'cal-day' + (isPast ? ' past' : '') + (isToday ? ' today' : '') + (selectedDate === dateStr ? ' selected' : '');
+    if (!isPast) {
+      el.onclick = () => selectDate(dateStr, el);
+    }
+    grid.appendChild(el);
+  }
+}
+
+function selectDate(dateStr, el) {
+  selectedDate = dateStr;
+  selectedTime = null;
+  document.querySelectorAll('.cal-day').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+  booking.date = dateStr;
+  renderTimeSlots();
+  document.getElementById('time-section').style.display = 'block';
+  updateStep3Next();
+}
+
+function renderTimeSlots() {
+  const grid = document.getElementById('time-grid');
+  grid.innerHTML = '';
+  allSlots.forEach(t => {
+    const el = document.createElement('div');
+    el.className = 'time-slot' + (takenSlots.includes(t) ? ' taken' : '') + (selectedTime === t ? ' selected' : '');
+    el.textContent = t;
+    if (!takenSlots.includes(t)) {
+      el.onclick = () => {
+        selectedTime = t;
+        booking.time = t;
+        document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+        el.classList.add('selected');
+        updateStep3Next();
+      };
+    }
+    grid.appendChild(el);
+  });
+}
+
+function updateStep3Next() {
+  const next = document.getElementById('step3-next');
+  const ready = selectedDate && selectedTime;
+  next.disabled = !ready;
+  next.style.opacity = ready ? '1' : '.35';
+  next.style.cursor  = ready ? 'pointer' : 'not-allowed';
+}
+
+function prevMonth() {
+  calMonth--;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+function nextMonth() {
+  calMonth++;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  renderCalendar();
+}
+
+/* ── Step 4: Summary ───────────────────────────── */
+function updateSummary() {
+  document.getElementById('sum-service').textContent  = booking.service || '—';
+  document.getElementById('sum-barber').textContent   = booking.barber  || '—';
+  document.getElementById('sum-datetime').textContent = booking.date && booking.time
+    ? formatDate(booking.date) + ' om ' + booking.time
+    : '—';
+  document.getElementById('sum-price').textContent = booking.price || '—';
+}
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  const days  = currentLang === 'nl'
+    ? ['Zo','Ma','Di','Wo','Do','Vr','Za']
+    : ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = currentLang === 'nl' ? monthsNL : monthsEN;
+  return days[d.getDay()] + ' ' + d.getDate() + ' ' + months[d.getMonth()];
+}
+
+/* ── Confirm booking ───────────────────────────── */
+async function confirmBooking(btn) {
+  const name = document.getElementById('field-name').value.trim();
+  const phone = document.getElementById('field-phone').value.trim();
+  if (!name || !phone) {
+    // simple validation highlight
+    if (!name)  document.getElementById('field-name').style.borderColor  = '#ef4444';
+    if (!phone) document.getElementById('field-phone').style.borderColor = '#ef4444';
+    setTimeout(() => {
+      document.getElementById('field-name').style.borderColor  = '';
+      document.getElementById('field-phone').style.borderColor = '';
+    }, 2000);
+    return;
+  }
+
+  // Loading state
+  const originalText = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = currentLang === 'nl' 
+    ? '<span style="font-size:12px;font-weight:500;">Bezig met verzenden...</span>' 
+    : '<span style="font-size:12px;font-weight:500;">Sending...</span>';
+
+  const formData = {
+    service: booking.service,
+    barber: booking.barber,
+    date: booking.date,
+    time: booking.time,
+    name: name,
+    phone: phone
+  };
+
+  fetch('https://script.google.com/macros/s/AKfycbwfjL1pFwYeRt6l9JyiStBeuZ7wZkrfjRMspHVelygB9wwsatHY4p8koEsbm0drrX2YlA/exec', {
+    method: 'POST',
+    mode: 'no-cors', // This is crucial for Google Sheets
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(formData)
+  }).then(() => {
+    // Show success message here because no-cors returns an opaque response
+    console.log('Successfully sent to Google Sheets');
+    
+    // Restore button state
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+
+    closeModal();
+    showToast();
+    
+    // Reset booking state
+    booking = { service:'', price:'', barber:'', date:'', time:'' };
+    selectedDate = null;
+    selectedTime = null;
+    document.getElementById('field-name').value = '';
+    document.getElementById('field-phone').value = '';
+  }).catch((error) => {
+    console.error('Error:', error);
+    
+    // Restore button state if error
+    btn.disabled = false;
+    btn.innerHTML = originalText;
+  });
+}
+
+/* ── Toast ─────────────────────────────────────── */
+function showToast() {
+  const t = document.getElementById('toast');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 4500);
+}
+
+/* ── Scroll reveal ─────────────────────────────── */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: .1 });
+document.querySelectorAll('.reveal').forEach(el => ro.observe(el));
+
+/* ── Init calendar on step 3 display ──────────── */
+// Render calendar when step 3 becomes active
+const origGoStep = goStep;
+// We already call renderCalendar in goStep when step === 3 indirectly via init
+document.getElementById('step-3').addEventListener('transitionend', () => {});
+// Just render on first modal open
+document.getElementById('booking-modal').addEventListener('transitionend', function once() {
+  renderCalendar();
+  this.removeEventListener('transitionend', once);
+});
+// Re-render calendar if language changes
+const origSetLang = setLang;
+setLang = function(lang) {
+  origSetLang(lang);
+  if (currentStep === 3) renderCalendar();
+};
+
+// Patch goStep to render calendar on step 3
+const _goStep = goStep;
+goStep = function(n) {
+  _goStep(n);
+  if (n === 3) renderCalendar();
+};
+</script>
+
+</body>
+</html>

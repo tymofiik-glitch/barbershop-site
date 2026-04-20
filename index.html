@@ -67,7 +67,7 @@ body::after{
 
 /* ── Typography helpers ───────────────────────── */
 .label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--mist)}
-.eyebrow{font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:1.05rem;letter-spacing:.04em}
+.eyebrow{font-family:'Montserrat',sans-serif;font-weight:500;text-transform:uppercase;color:var(--gold);font-size:11px;letter-spacing:.2em}
 
 /* ── Gold line ────────────────────────────────── */
 .g-line{height:1px;background:linear-gradient(90deg,transparent,var(--gold) 40%,var(--gold) 60%,transparent)}
@@ -474,6 +474,20 @@ body::after{
           </div>
         </button>
 
+        <!-- Option: Studenten Knippen -->
+        <button class="svc-opt" onclick="selectService(this,'Studenten Knippen','€18')">
+          <div class="flex flex-col gap-0.5 flex-1 text-left">
+            <span class="text-ivory font-500 text-sm lang-nl">Studenten Knippen</span>
+            <span class="text-ivory font-500 text-sm lang-en hidden">Student Haircut</span>
+            <span class="text-mist lang-nl" style="font-size:11px">Op vertoon van je studentenkaart. Kwaliteit voor een studentenprijs.</span>
+            <span class="text-mist lang-en hidden" style="font-size:11px">On presentation of your student card. Quality at a student price.</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="text-gold font-500 text-sm whitespace-nowrap">€ 18</span>
+            <div class="svc-opt-check"><svg class="w-2.5 h-2.5 text-void" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+          </div>
+        </button>
+
         <!-- Option: Jeugd Knippen -->
         <button class="svc-opt" onclick="selectService(this,'Jeugd Knippen','€15')">
           <div class="flex flex-col gap-0.5 flex-1 text-left">
@@ -714,7 +728,7 @@ body::after{
         </div>
         <div>
           <div style="font-size:13px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory);line-height:1">Two in One</div>
-          <div style="font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:10px;letter-spacing:.1em;line-height:1.2;margin-top:1px">Barberstudio</div>
+          <div class="font-sans font-500 uppercase tracking-widest text-gold text-[10px] leading-snug mt-[1px]">Barberstudio</div>
         </div>
       </a>
 
@@ -874,7 +888,7 @@ body::after{
             <div class="text-center px-10">
               <div style="font-size:18px;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--ivory);line-height:1">Two in One</div>
               <div class="g-line w-12 mx-auto my-2"></div>
-              <div style="font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:12px;letter-spacing:.1em">Barberstudio · Rijswijk</div>
+              <div class="font-sans font-500 uppercase tracking-widest text-gold text-xs">Barberstudio · Rijswijk</div>
             </div>
           </div>
 
@@ -1066,6 +1080,23 @@ body::after{
         </button>
       </div>
 
+      <!-- Studenten Knippen -->
+      <div class="svc-card p-7 reveal flex flex-col gap-5" style="border-radius:2px;transition-delay:.30s">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-nl">Studenten Knippen</h3>
+            <h3 class="text-ivory font-500 text-base uppercase tracking-widest lang-en hidden">Student Haircut</h3>
+          </div>
+          <span style="font-size:20px;font-weight:400;color:var(--gold);letter-spacing:-.01em;white-space:nowrap">€18</span>
+        </div>
+        <div class="g-line"></div>
+        <p class="text-mist leading-relaxed flex-1 lang-nl" style="font-size:12px">Breng je studentenkaart mee voor een strakke look voor een betere prijs.</p>
+        <p class="text-mist leading-relaxed flex-1 lang-en hidden" style="font-size:12px">Bring your student card for a fresh cut at a better price.</p>
+        <button onclick="openModal()" class="btn-ghost w-full" style="justify-content:center;font-size:10px;padding:11px 20px;border-radius:2px">
+          <span class="lang-nl">Boek Nu</span><span class="lang-en hidden">Book Now</span>
+        </button>
+      </div>
+
       <!-- Jeugd Knippen -->
       <div class="svc-card p-7 reveal flex flex-col gap-5" style="border-radius:2px;transition-delay:.35s">
         <div class="flex items-start justify-between gap-4">
@@ -1110,7 +1141,7 @@ body::after{
     </div>
     
     <div class="text-center mt-6 reveal">
-      <a href="https://maps.app.goo.gl/nQ3fzx87LztD5Ee77" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex">
+      <a href="https://maps.google.com/?q=Visseringlaan+19+Rijswijk" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex">
         <span class="lang-nl">Open in Google Maps</span>
         <span class="lang-en hidden">Open in Google Maps</span>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
@@ -1141,7 +1172,7 @@ body::after{
               <div style="text-align:center;padding:0 30px">
                 <div style="font-size:20px;font-weight:400;letter-spacing:.2em;color:var(--ivory);text-transform:uppercase;line-height:1">Two in One</div>
                 <div class="g-line w-12 mx-auto my-3"></div>
-                <div style="font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:12px;letter-spacing:.1em">Barberstudio · Rijswijk</div>
+                <div class="font-sans font-500 uppercase tracking-widest text-gold text-xs">Barberstudio · Rijswijk</div>
               </div>
             </div>
             <!-- Corner marks -->
@@ -1195,7 +1226,7 @@ body::after{
 <section id="reviews" class="py-28 lg:py-36" style="background:#09090A;position:relative;overflow:hidden">
 
   <!-- Big quote BG -->
-  <div style="position:absolute;top:40px;left:20px;font-family:'Cormorant',serif;font-size:clamp(12rem,28vw,22rem);color:rgba(192,154,42,.028);line-height:1;pointer-events:none;select-text:none;user-select:none">&ldquo;</div>
+  <div class="font-sans font-800 pointer-events-none select-none absolute top-[40px] left-[20px] leading-none text-[#C09A2A]" style="opacity:0.028;font-size:clamp(12rem,28vw,22rem);">&ldquo;</div>
 
   <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
     <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-14 reveal">
@@ -1227,7 +1258,7 @@ body::after{
           <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
           <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
         </div>
-        <p style="font-family:'Cormorant',serif;font-style:italic;font-size:14px;color:rgba(192,154,42,.38);line-height:1">&ldquo;</p>
+        <p class="font-sans font-800" style="font-size:18px;color:rgba(192,154,42,.38);line-height:1">&ldquo;</p>
         <p class="text-silk leading-relaxed flex-1 lang-nl" style="font-size:13px;font-style:italic">Een moderne en respectvolle plek waar je niet alleen geknipt wordt, maar ook kunt ontspannen. Een absolute professional!</p>
         <p class="text-silk leading-relaxed flex-1 lang-en hidden" style="font-size:13px;font-style:italic">A modern and respectful place where you don't just get a haircut, but can also relax. An absolute professional!</p>
         <div class="flex items-center gap-3">
@@ -1248,7 +1279,7 @@ body::after{
           <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
           <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
         </div>
-        <p style="font-family:'Cormorant',serif;font-style:italic;font-size:14px;color:rgba(192,154,42,.38);line-height:1">&ldquo;</p>
+        <p class="font-sans font-800" style="font-size:18px;color:rgba(192,154,42,.38);line-height:1">&ldquo;</p>
         <p class="text-silk leading-relaxed flex-1 lang-nl" style="font-size:13px;font-style:italic">Altijd netjes, op tijd en een schone salon. Al 12 jaar vaste klant en nooit teleurgesteld. Een absolute aanrader!</p>
         <p class="text-silk leading-relaxed flex-1 lang-en hidden" style="font-size:13px;font-style:italic">Always neat, on time and a clean salon. A loyal client for 12 years and never disappointed. An absolute recommendation!</p>
         <div class="flex items-center gap-3">
@@ -1269,7 +1300,7 @@ body::after{
           <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
           <svg class="w-3.5 h-3.5 text-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
         </div>
-        <p style="font-family:'Cormorant',serif;font-style:italic;font-size:14px;color:rgba(192,154,42,.38);line-height:1">&ldquo;</p>
+        <p class="font-sans font-800" style="font-size:18px;color:rgba(192,154,42,.38);line-height:1">&ldquo;</p>
         <p class="text-silk leading-relaxed flex-1 lang-nl" style="font-size:13px;font-style:italic">Geweldige, vriendelijke kapper die mijn haar al jaren precies knipt zoals ik het wil. 100% geen spijt.</p>
         <p class="text-silk leading-relaxed flex-1 lang-en hidden" style="font-size:13px;font-style:italic">Great, friendly barber who has been cutting my hair exactly the way I want for years. 100% no regrets.</p>
         <div class="flex items-center gap-3">
@@ -1284,7 +1315,7 @@ body::after{
     </div>
 
     <div class="text-center mt-10 reveal">
-      <a href="https://maps.google.com" target="_blank" rel="noopener" class="btn-ghost" style="display:inline-flex">
+      <a href="https://share.google/z9V2V7XyWwrM14ufZ" target="_blank" rel="noopener noreferrer" class="btn-ghost" style="display:inline-flex">
         <span class="lang-nl">Alle reviews op Google bekijken</span>
         <span class="lang-en hidden">View all reviews on Google</span>
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
@@ -1335,7 +1366,7 @@ body::after{
           </div>
           <div>
             <div style="font-size:12px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--ivory);line-height:1">Two in One</div>
-            <div style="font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:9px;letter-spacing:.1em;margin-top:2px">Barberstudio</div>
+            <div class="font-sans font-500 uppercase tracking-widest text-gold text-[9px] mt-[2px]">Barberstudio</div>
           </div>
         </div>
         <p class="text-mist lang-nl" style="font-size:12px;line-height:1.8;max-width:240px">Uw premium barberstudio in Rijswijk. Topkwaliteit, onberispelijke service, al meer dan 12 jaar.</p>
